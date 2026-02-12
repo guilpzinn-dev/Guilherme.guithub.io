@@ -1,23 +1,71 @@
-/* Centralizar tudo */
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* ===== RESET BÁSICO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Cada página vira uma folha */
+/* ===== FUNDO ORIGINAL (MANTIDO) ===== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #ffe4ec,
+    #ffb3c6,
+    #ff8fab,
+    #b5173f
+  );
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+
+  color: #000000;
+  font-family: 'Poppins', sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 60px 20px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Movimento do fundo */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Camada de brilho suave */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.15),
+    rgba(0,0,0,0.25)
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== CARTA ===== */
 .page {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  width: 650px;
-  max-width: 90%;
-  padding: 60px 50px;
 
-  background: #fffaf5; /* cor suave de papel */
-  border-radius: 10px;
+  width: 700px;
+  max-width: 95%;
 
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.35),
+  padding: 70px 60px;
+
+  background: #fffaf5;
+  border-radius: 12px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
     inset 0 0 40px rgba(0, 0, 0, 0.05);
 
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -25,15 +73,7 @@ body {
   line-height: 1.9;
   font-size: 18px;
 
-  opacity: 0;
-  transform: scale(0.95);
-  transition: 0.5s ease;
-}
-
-/* Página ativa aparece */
-.page.active {
-  opacity: 1;
-  transform: scale(1);
+  margin-bottom: 40px;
 }
 
 /* Textura leve de papel */
@@ -49,17 +89,26 @@ body {
     transparent 3px
   );
   pointer-events: none;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 /* Título */
 .page h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-weight: 600;
+  font-size: 28px;
 }
 
-/* Parágrafo mais bonito */
+/* Parágrafos formatados */
 .page p {
   white-space: pre-line;
+  text-align: justify;
+}
+
+/* Página final menorzinha */
+.page:last-child {
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
 }
